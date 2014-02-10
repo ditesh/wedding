@@ -1,0 +1,101 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	color: black;
+	height: 100%;
+	background-image: url(../images/background.png);
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+	background-position: top left;
+}
+
+.main {
+	position: relative;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 10px;
+}
+
+.header-center {
+
+        font-size: 24px;
+	text-align: center;
+	vertical-align: bottom;
+	text-transform: capitalize;
+	text-shadow: 0px 0px 2px #000;
+	font-family: 'Sunshiney', arial, serif;
+
+}
+
+.symbols {
+
+	color: #996633;
+	text-shadow: 0px 0px 2px #fff;
+
+}
+
+.content {
+
+	height: 450px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding: 10px;
+	background-color: darkred;
+	-moz-box-shadow: 0px 0px 10px #000;
+	-webkit-box-shadow: 0px 0px 10px #000;
+	opacity: 0.8;
+
+}
+
+.map {
+	height: inherit;
+}
+
+.guestbook-embed {
+	height: inherit;
+	display: none;
+}
+
+#ditesh-hearts-anita {
+	cursor: pointer;
+}
+
+#score {
+	top: 10px;
+	right: 10px;
+	font-family: arial;
+	font-size: 22px;
+	color: darkred;
+	font-weight: bold;
+	text-align: center;
+	position: absolute;
+
+	padding: 3px;
+	min-width: 30px;
+	height: 30px;
+	border: 3px solid white;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#EDDBC9));
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.gallery {
+	height: 550px;
+}
+
+.infowindow {
+	font-family: arial;
+}
+
+.clear {
+	clear: both;
+	height: 20px;
+}
+
+a {
+	color: darkred;
+	text-decoration: none;
+}

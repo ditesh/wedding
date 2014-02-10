@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Sunshiney' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<link rel="stylesheet" href="css/animation.css" type="text/css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script type="text/javascript"  src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript">
+
+		var map, house, stallions, setia, airport;
+		var housell = new google.maps.LatLng(5.389556, 100.296759);
+		var setiall = new google.maps.LatLng(5.307531, 100.258602);
+		var stallionsll = new google.maps.LatLng(5.380909, 100.311592);
+		var airportll= new google.maps.LatLng(5.297224,100.276669);
+
+		var houseInfoWindow = new google.maps.InfoWindow({
+		    content: "<div class='infowindow'><strong>Ditesh's House</strong><br>94 Jalan Tembaga,<br>11600 Island Park,<br>Penang, Malaysia</div>"
+		});
+
+		var stallionsInfoWindow = new google.maps.InfoWindow({
+		    content: "<div class='infowindow'><strong>Stallions Apartment</strong><br>11700 Bukit Dumbar, Gelugor,<br>Penang, Malaysia</div>"
+		});
+
+		var setiaInfoWindow = new google.maps.InfoWindow({
+		    content: "<div class='infowindow'><strong>Setia Pearl Island Country Club</strong><br>8 Persiaran Kelicap,<br>11900 Bayan Lepas,<br>Penang, Malaysia</div>"
+		});
+
+		var airportInfoWindow = new google.maps.InfoWindow({
+		    content: "<div class='infowindow'><strong>Penang International Airport</strong><br>Some place in Penang,<br>Penang, Malaysia</div>"
+		});
+
+	</script>
+	<title>Ditesh &#x2764; Anita</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<!--	<aside id="score">Play</aside>-->
+	<div class="main">
+		<div class="header-center">
+			<span id='ditesh-hearts-anita' style="color: red">Ditesh &#x2764; Anita</style></span>
+			<br>
+			<a id="house" href="#ditesh-house">House</a>&nbsp; <span class="symbols">&#x2766;</span>
+			<a id="stallions" href="#apartment">Engagement & Sangeet Venue</a>&nbsp;<span class="symbols">&#x2767;</span>
+			<a id="setia" href="#wedding-venue">Wedding Venue</a>&nbsp;<span class="symbols">&#x2765;</span>
+			<a id="airport" href="#airport">Airport</a>&nbsp;<span class="symbols">&#x2764;</span>
+			<a id="guestbook" href="#guestbook">Guestbook</a>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="content" id="content">
+			<div class="map" id="map"></div>
+			<div class="guestbook-embed" id="guestbook-embed">
+				<iframe src="https://spreadsheets.google.com/embeddedform?formkey=dDgxcFFQYnZjQnlXNFpDTlJTWjdQX1E6MQ" width="100%" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script>
+		$(document).ready(function() {
+
+			$("#house").click(function() {
+
+				$("#guestbook-embed").hide();
+				$("#map").show();
+
+				map.panTo(housell);
+				houseInfoWindow.open(map, house);
+				setiaInfoWindow.close();
+				stallionsInfoWindow.close();
+
+				$("#setia").css("color", "darkred");
+				$("#airport").css("color", "darkred");
+				$("#stallions").css("color", "darkred");
+				$("#guestbook").css("color", "darkred");
+				$(this).css("color", "orange");
+
+			});
+
+			$("#stallions").click(function() {
+
+				$("#guestbook-embed").hide();
+				$("#map").show();
+
+				map.panTo(stallionsll);
+				stallionsInfoWindow.open(map, stallions);
+				setiaInfoWindow.close();
+				houseInfoWindow.close();
+
+				$("#setia").css("color", "darkred");
+				$("#house").css("color", "darkred");
+				$("#airport").css("color", "darkred");
+				$("#guestbook").css("color", "darkred");
+				$(this).css("color", "orange");
+
+			});
+
+			$("#setia").click(function() {
+
+				$("#guestbook-embed").hide();
+				$("#map").show();
+
+				map.panTo(setiall);
+				setiaInfoWindow.open(map, setia);
+				stallionsInfoWindow.close();
+				houseInfoWindow.close();
+				airportInfoWindow.close();
+
+				$("#house").css("color", "darkred");
+				$("#airport").css("color", "darkred");
+				$("#stallions").css("color", "darkred");
+				$("#guestbook").css("color", "darkred");
+				$(this).css("color", "orange");
+
+			});
+
+			$("#airport").click(function() {
+
+				$("#guestbook-embed").hide();
+				$("#map").show();
+
+				map.panTo(airportll);
+				airportInfoWindow.open(map, airport);
+				setiaInfoWindow.close();
+				stallionsInfoWindow.close();
+				houseInfoWindow.close();
+
+				$("#house").css("color", "darkred");
+				$("#setia").css("color", "darkred");
+				$("#stallions").css("color", "darkred");
+				$("#guestbook").css("color", "darkred");
+				$(this).css("color", "orange");
+
+			});
+
+			$("#guestbook").click(function () {
+
+				$("#map").hide();
+				$("#guestbook-embed").show();
+
+				$("#house").css("color", "darkred");
+				$("#stallions").css("color", "darkred");
+				$("#setia").css("color", "darkred");
+				$("#airport").css("color", "darkred");
+				$(this).css("color", "orange");
+
+			});
+
+			$(".animate").live("click", function() {
+
+				$(this).hide();
+				changeScore(1);
+
+			});
+
+			$("#ditesh-hearts-anita").click(function () {
+
+/* Commented out, for reasons of formality
+				if (speed <= 1000)
+					speed = 500;
+
+				speed /= 2;
+	
+				clearTimeout(timer);
+				feelingLikeANinja();
+*/
+
+			});
+
+			function changeScore(modifier) {
+
+				var score = parseInt($("#score").html());
+
+				if (!score)
+					score = 0;
+
+				$("#score").html(score+modifier);
+				clearTimeout(timer);
+				feelingLikeANinja();
+
+
+			}
+
+			function feelingLikeANinja() {
+
+				heartID += 1;
+				var heart = "&#x276" + (Math.floor(Math.random()*4)+4);
+				var elem = $("<span>"+heart+"</span>");
+				elem.attr("id", "heart-"+heartID);
+				elem.addClass("animate");
+				elem.css("left", Math.round(Math.random()*$(document).width()));
+				$("body").prepend(elem);
+
+				timer = setTimeout(feelingLikeANinja, speed);
+
+/*				document.getElementById("heart-"+heartID).addEventListener('webkitAnimationEnd', function(event) {
+
+					changeScore(-1);
+
+				}, false);*/
+
+			}
+
+			function initialize() {
+
+				var myOptions = {
+					zoom: 14,
+					center: housell,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+
+				map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+				stallions = new google.maps.Marker({
+					position: stallionsll, 
+					map: map, 
+					animation: google.maps.Animation.DROP,
+					title: "Stallions Apartments & Club"
+				});
+				google.maps.event.addListener(stallions, 'click', function() {
+					stallionsInfoWindow.open(map, stallions);
+				});
+
+				setia = new google.maps.Marker({
+					position: setiall,
+					map: map, 
+					animation: google.maps.Animation.DROP,
+					title: "Setia Pearl Country Club"
+				});
+				google.maps.event.addListener(setia, 'click', function() {
+					setiaInfoWindow.open(map, setia);
+				});
+
+				airport = new google.maps.Marker({
+					position: airportll,
+					map: map, 
+					animation: google.maps.Animation.DROP,
+					title: "Penang International Airport"
+				});
+
+				google.maps.event.addListener(airport, 'click', function() {
+					airportInfoWindow.open(map, airport);
+				});
+
+				house = new google.maps.Marker({
+					position: housell,
+					map: map, 
+					animation: google.maps.Animation.DROP,
+					title: "Ditesh's House!"
+				});
+
+				houseInfoWindow.open(map, house);
+				google.maps.event.addListener(house, 'click', function() {
+					houseInfoWindow.open(map, house);
+				});
+
+				map.setZoom(14);
+				map.setCenter(housell);
+
+			}
+
+			var speed = 20000, heartID=0, timer;
+			initialize();
+
+			if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
+				timer = setTimeout(feelingLikeANinja, speed);
+
+			$("#setia").click();
+
+		});
+
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-15879952-2']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</body>
+</html>
